@@ -7,6 +7,7 @@
 var debug = require('debug')('cookie-session');
 var Cookies = require('cookies');
 var onHeaders = require('on-headers');
+var zlib = require('zlib');
 
 /**
  * Create a new cookie session middleware.
@@ -208,7 +209,7 @@ Session.prototype.save = function(){
  */
 
 function decode(string) {
-  var body = new Buffer(string, 'base64').toString('utf8');
+  var body = zlib.gunzipSync(new Buffer(string, 'base64')).toString('utf8');
   return JSON.parse(body);
 }
 
@@ -222,5 +223,5 @@ function decode(string) {
 
 function encode(body) {
   body = JSON.stringify(body);
-  return new Buffer(body).toString('base64');
+  return zlib.gzipSync(new Buffer(body)).toString('base64');
 }

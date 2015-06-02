@@ -1,7 +1,7 @@
 {
-  "name": "cookie-session",
+  "name": "compressed-cookie-session",
   "description": "cookie session middleware",
-  "repository": "expressjs/cookie-session",
+  "repository": "benjie/compressed-cookie-session",
   "version": "1.1.0",
   "keywords": [
     "connect",
